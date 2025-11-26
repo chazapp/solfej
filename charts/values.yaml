@@ -1,0 +1,19 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/chazapp/solfej
+  tag: 1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  name: solfej
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  host: solfej.chaz.pro 
+  tls:
+    secretName: solfej-tls
+    hosts:
+      - solfej.chaz.pro
