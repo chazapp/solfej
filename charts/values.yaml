@@ -11,6 +11,8 @@ service:
   port: 80
 
 ingress:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
   enabled: true
   host: solfej.chaz.pro 
   tls:

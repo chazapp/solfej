@@ -2,13 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}
+  annotations:
+  {{- with .Values.ingress.annotations }}
+  {{ toYaml . | indent 2 }}
+  {{- end }}
 spec:
   {{- if .Values.ingress.tls }}
   tls:
     {{- with .Values.ingress.tls.secretName }}
     - secretName: {{ . }}
     {{- end }}
-    - hosts:
+      hosts:
       {{- range .Values.ingress.tls.hosts }}
       - {{ . }}
       {{- end }}
