@@ -2,6 +2,13 @@ Array.prototype.sample = function(){
   return this[Math.floor(Math.random()*this.length)];
 }
 
+function shuffleArray(arr) {
+    let newArr = arr.map(value => ({ value, sort: Math.random() }))
+                                  .sort((a, b) => a.sort - b.sort)
+                                  .map(({ value }) => value)
+    return newArr;
+}
+
 const CANVAS_HEIGHT = 320;
 const CANVAS_WIDTH = 320;
 
@@ -13,48 +20,7 @@ const LINE_COUNT = 5;
 const LINE_SPACING = 20;
 const LINE_OFFSET = 120;
 const REVERSE_NOTE_OFFSET = 150;
-const NOTE_LIST = ["DO", "RE", "MI", "FA", "SOL", "LA", "SI"]
-const NOTE_MAP = {
-    "DO": [
-        {
-            y: 140,
-        },
-    ],
-    "RE": [
-        {
-            y: 200
-        },
-        {
-            y: 130,
-        }
-    ],
-    "MI": [
-        {
-            y: 120,
-        }
-    ],
-    "FA": [
-        {
-            y: 110,
-        }
-    ],
-    "SOL": [
-        {
-            y: 100,
-        }
-    ],
-    "LA": [
-        {
-            y: 90
-        }
-    ],
-    "SI": [
-        {
-            y: 80,
-        }
-    ]
-}
-
+const NOTE_LIST = ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"]
 const SCALE_MAP = [{
         offset: 90,
      }, {
@@ -66,6 +32,8 @@ const SCALE_MAP = [{
     }
 ]
 
+const ANSWER_BUTTONS = 4;
+
 const DrawPartition = (canvas) => {
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "white"
@@ -74,6 +42,11 @@ const DrawPartition = (canvas) => {
         ctx.fillRect(0, LINE_OFFSET + LINE_SPACING * i, CANVAS_WIDTH, 1)
     }
 };
+
+const ClearCanvas = (canvas) => {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+}
 
 const DrawQuadrants = (canvas) => {
     const ctx = canvas.getContext("2d");
@@ -126,12 +99,51 @@ const DrawRandomNote = (canvas) => {
     return note;
 }
 
-const canvas = document.getElementById("solfej");
+const AddResponseButtons = (container, note) => {
+    const buttons = []
+    const buttonTailwindClasses = "outline-solid text-white rounded p-4"
 
-canvas.height = CANVAS_HEIGHT;
-canvas.width = CANVAS_WIDTH;
-DrawPartition(canvas);
-// DrawQuadrants(canvas);
-DrawSolKey(canvas);
+    const altAnswers = shuffleArray(NOTE_LIST).filter(e => e !== note);
+    for (let i = 0; i < ANSWER_BUTTONS; i++) {
+        const button = document.createElement("button");
+        button.setAttribute("class", buttonTailwindClasses);
+        if (i == 0) {
+            button.isCorrect = true;
+            button.appendChild(document.createTextNode(note));
+            button.onclick = () => {
+                console.log("win!")
+                button.setAttribute("class", `${buttonTailwindClasses} fade-success`)
+                setTimeout(Play, 800)
+            };
+        } else {
+            button.appendChild(document.createTextNode(altAnswers[i]));    
+            button.onclick = () => {
+                console.log("lose!")
+                buttons.find(e => e.isCorrect == true).setAttribute("class", `${buttonTailwindClasses} fade-success`)
+                button.setAttribute("class", `${buttonTailwindClasses} fade-fail`)
+                setTimeout(Play, 800)
+            };
+        }
+        buttons.push(button)
+    }
+    container.append(...shuffleArray(buttons));
+}
 
-const note = DrawRandomNote(canvas);
+const Play = () => {
+    const buttonsContainer = document.getElementById("buttons")
+    const canvas = document.getElementById("solfej");
+    
+    canvas.height = CANVAS_HEIGHT;
+    canvas.width = CANVAS_WIDTH;
+
+    ClearCanvas(canvas);
+    DrawPartition(canvas);
+    DrawSolKey(canvas);
+
+    const note = DrawRandomNote(canvas);
+    
+    buttonsContainer.replaceChildren();
+    AddResponseButtons(buttonsContainer, note)
+}
+
+Play();

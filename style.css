@@ -1,0 +1,25 @@
+@keyframes fadeFail {
+  0% {
+    background-color: red;
+  }
+  100% {
+    background-color: inherit;
+  }
+}
+
+@keyframes fadeSuccess {
+  0% {
+    background-color: green;
+  }
+  100% {
+    background-color: inherit;
+  }
+}
+
+.fade-fail {
+  animation: fadeFail 1s ease-in-out forwards;
+}
+
+.fade-success {
+  animation: fadeSuccess 1s ease-in-out forwards;
+}

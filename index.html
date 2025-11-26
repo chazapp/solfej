@@ -3,13 +3,13 @@
  <title>Solfej</title>
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+ <link rel="stylesheet" href="style.css"></style>
 </head>
-<body class="flex h-screen w-screen">
+<body class="flex h-screen w-screen bg-gray-900">
     <div class="m-auto flex-column gap-4 grid">
-        <h1 class="text-3xl text-center font-bold underline">Solfej</h1>
+        <h1 class="text-3xl text-white text-center font-bold underline">Solfej</h1>
         <canvas class="outline-solid outline-offset-2 outline-gray-700" id="solfej"></canvas>
+        <div id="buttons" class="w-auto grid gap-4 grid-cols-2"></div>
         <script src="./solfej.js"></script>
-        <div id="buttons"></div>
     </div>
 </body>
-</html>
