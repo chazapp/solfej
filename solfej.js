@@ -62,7 +62,7 @@ const DrawQuadrants = (canvas) => {
 const DrawSolKey = (canvas) => {
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "white";
-    ctx.font = "80px serif";
+    ctx.font = "80px NotoMusic";
 
     ctx.fillText(SOL_KEY_CHAR, 0, LINE_OFFSET + 80); 
 };
@@ -71,8 +71,8 @@ const DrawSolKey = (canvas) => {
 const DrawRandomNote = (canvas) => {
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "white";
-    ctx.font = "75px serif";
-    
+    ctx.font = '75px NotoMusic';
+
     const note = NOTE_LIST.sample();
     const idx = NOTE_LIST.indexOf(note);
     const scale = SCALE_MAP.sample();
@@ -132,18 +132,18 @@ const AddResponseButtons = (container, note) => {
 const Play = () => {
     const buttonsContainer = document.getElementById("buttons")
     const canvas = document.getElementById("solfej");
-    
     canvas.height = CANVAS_HEIGHT;
     canvas.width = CANVAS_WIDTH;
 
-    ClearCanvas(canvas);
-    DrawPartition(canvas);
-    DrawSolKey(canvas);
-
-    const note = DrawRandomNote(canvas);
-    
-    buttonsContainer.replaceChildren();
-    AddResponseButtons(buttonsContainer, note)
+    const font = new FontFace(`NotoMusic`, `url('./NotoMusicRegular.ttf')`);
+    font.load().then(() => {
+        ClearCanvas(canvas);
+        DrawPartition(canvas);
+        DrawSolKey(canvas);
+        const note = DrawRandomNote(canvas);
+        buttonsContainer.replaceChildren();
+        AddResponseButtons(buttonsContainer, note)
+    });
 }
 
 Play();
