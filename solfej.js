@@ -125,7 +125,6 @@ const DrawRandomNote = (canvas, config) => {
     } else {
         ctx.fillText(NOTE_CHAR, NOTE_POS_X, y);    
     }
-    console.log("Draw", note, y)
     return note;
 }
 
@@ -141,14 +140,12 @@ const AddResponseButtons = (container, note) => {
             button.isCorrect = true;
             button.appendChild(document.createTextNode(note));
             button.onclick = () => {
-                console.log("win!")
                 button.setAttribute("class", `${buttonTailwindClasses} fade-success`)
                 setTimeout(Play, 800)
             };
         } else {
             button.appendChild(document.createTextNode(altAnswers[i]));    
             button.onclick = () => {
-                console.log("lose!")
                 buttons.find(e => e.isCorrect == true).setAttribute("class", `${buttonTailwindClasses} fade-success`)
                 button.setAttribute("class", `${buttonTailwindClasses} fade-fail`)
                 setTimeout(Play, 500)
@@ -176,7 +173,6 @@ const Play = () => {
     const canvas = document.getElementById("solfej");
     canvas.height = CANVAS_HEIGHT;
     canvas.width = CANVAS_WIDTH;
-    console.log(config);
 
     const font = new FontFace(`NotoMusic`, `url('NotoMusicRegular.ttf')`);
     font.load().then(() => {
