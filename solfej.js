@@ -178,7 +178,7 @@ const Play = () => {
     canvas.width = CANVAS_WIDTH;
     console.log(config);
 
-    const font = new FontFace(`NotoMusic`, `url('assets/NotoMusicRegular.ttf')`);
+    const font = new FontFace(`NotoMusic`, `url('NotoMusicRegular.ttf')`);
     font.load().then(() => {
         ClearCanvas(canvas);
         DrawPartition(canvas);

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'NotoMusic';
-    src: url('assets/NotoMusicRegular.ttf');
+    src: url('NotoMusicRegular.ttf');
 }
 
 @keyframes fadeFail {
