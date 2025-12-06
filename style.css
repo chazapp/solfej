@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'NotoMusic';
-    src: url('NotoMusicRegular.ttf');
+    src: url('assets/NotoMusicRegular.ttf');
 }
 
 @keyframes fadeFail {
@@ -28,3 +28,99 @@
 .fade-success {
   animation: fadeSuccess 1s ease-in-out forwards;
 }
+
+.material-symbols-outlined {
+  font-size: xx-large;
+  user-select: none;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.material-symbols-outlined:hover {
+    cursor: pointer;
+}
+
+ /* The side navigation menu */
+.left-sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  user-select: none;
+  outline: none;
+  white-space:nowrap;
+}
+
+.right-sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  user-select: none;
+  outline: none;
+  white-space:nowrap;
+}
+
+/* The navigation menu links */
+.left-sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  outline-color: transparent;
+}
+
+/* When you mouse over the navigation links, change their color */
+.left-sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.left-sidenav:focus {
+  outline-color: transparent;
+
+}
+
+/* Position and style the close button (top right corner) */
+.left-sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.right-sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  color: #818181;
+  font-size: 36px;
+  margin-left: 20px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+body {
+  transition: margin-left .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} 

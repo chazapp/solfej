@@ -1,18 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Solfej</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <link rel="stylesheet" href="style.css"></style>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu,settings" />
+        <link rel="stylesheet" href="style.css">
+        </style>
     </head>
-    <body class="flex h-screen w-screen bg-gray-900">
-        <div class="m-auto flex-column gap-4 grid noto-">
+
+    <body class="flex h-screen w-screen bg-gray-900 flex-col">
+        <div id="game-menu" class="left-sidenav" tabindex="0">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeGameSelect()">&times;</a>
+            <a href="/#simple">Simple</a>
+            <a href="/#clocked">Clocked</a>
+            <a href="/#timeattack">Time attack</a>
+        </div>
+        <div id="options-menu" class="right-sidenav" tabindex="1">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeOptions()">&times;</a>
+            <div class="flex flex-col z-2 gap-4">
+                <p class="text-white m-auto p-5">Global options</p>
+                <div id="global-options" class="flex grid grid-cols-1 grid-rows-2 gap-4 m-auto">
+                    <div id="key-select" class="flex flex-row gap-4">
+                        <label class="text-white flex flex-grow" for="key">Key:</label>
+                        <select class="bg-white w-20" name="key" id="key" tabindex="1">
+                            <option value="sol">Sol</option>
+                            <option value="fa">Fa</option>
+                        </select>
+                    </div>
+                    <div id="key-select" class="flex flex-row gap-4">
+                        <label class="text-white flex-grow" for="range">Range:</label>
+                        <select class="bg-white w-20" name="range" id="range" tabindex="1">
+                            <option value="simple">Simple</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="game-area" class="m-auto flex-col gap-4 grid">
+            <div id="app-bar" class="flex flex-row mt-0">
+                <span class="material-symbols-outlined text-white text-xl" onclick="openGameSelect()">menu</span>
+                <div class="flex-grow"></div>
+                <span class="material-symbols-outlined text-white text-xl" onclick="openOptions()">settings</span>
+            </div>
             <h1 class="text-3xl text-white text-center font-bold underline font-NotoMusic">Solfej</h1>
             <canvas class="outline-solid outline-offset-2 outline-gray-700" id="solfej"></canvas>
             <div id="buttons" class="w-auto grid gap-4 grid-cols-2"></div>
             <script src="./solfej.js"></script>
+            <script src="./ui.js"></script>
+        </div>
         </div>
     </body>
+    
+
 </html>
